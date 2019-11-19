@@ -44,7 +44,7 @@ public class UserResource {
             path = "{userUuid}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    public ResponseEntity<?> fethUser(@PathVariable("userUuid") UUID userUuid){
+    public ResponseEntity<?> fetchUser(@PathVariable("userUuid") UUID userUuid){
         Optional<User> userOptional = userService.getUser(userUuid);
         if (userOptional.isPresent()){
             return ResponseEntity.ok(userOptional.get());
