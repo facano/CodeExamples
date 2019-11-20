@@ -1,10 +1,12 @@
 package com.fcano.learningspringboot.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
+@JsonIgnoreProperties(ignoreUnknown = true)
 public class User {
 
     private final UUID userUid;
@@ -33,7 +35,7 @@ public class User {
         this.email = email;
     }
 
-    @JsonProperty("id")
+    //@JsonProperty("id")
     public UUID getUserUid() {
         return userUid;
     }

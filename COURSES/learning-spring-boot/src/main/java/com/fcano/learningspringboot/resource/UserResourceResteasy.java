@@ -14,7 +14,7 @@ import java.util.UUID;
 
 import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("api/v1/users")
+@Path("/api/v1/users")
 @Component
 public class UserResourceResteasy {
 

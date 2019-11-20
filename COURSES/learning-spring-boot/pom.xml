@@ -16,6 +16,8 @@
 
 	<properties>
 		<java.version>13</java.version>
+		<rest.easy.client.version>3.7.0.Final</rest.easy.client.version>
+		<jboss.rest.easy.version>3.1.0.Final</jboss.rest.easy.version>
 	</properties>
 
 	<dependencies>
@@ -44,9 +46,21 @@
 		<dependency>
 			<groupId>org.jboss.resteasy</groupId>
 			<artifactId>resteasy-spring-boot-starter</artifactId>
-			<version>4.3.1.Final</version>
+			<version>${jboss.rest.easy.version}</version>
 		</dependency>
-	</dependencies>
+
+		<!-- https://mvnrepository.com/artifact/org.jboss.resteasy/resteasy-client -->
+		<dependency>
+			<groupId>org.jboss.resteasy</groupId>
+			<artifactId>resteasy-client</artifactId>
+			<version>${rest.easy.client.version}</version>
+		</dependency>
+        <dependency>
+            <groupId>junit</groupId>
+            <artifactId>junit</artifactId>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
 
 	<build>
 		<plugins>
