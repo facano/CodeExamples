@@ -36,60 +36,30 @@ public class UserResourceResteasy {
     @GET
     @Produces(APPLICATION_JSON)
     @Path("{userUuid}")
-    public Response fetchUser(@PathParam("userUuid") UUID userUuid){
-        Optional<User> userOptional = userService.getUser(userUuid);
-        if (userOptional.isPresent()){
-            return Response.ok(userOptional.get()).build();
-        }
-        return Response.status(Response.Status.NOT_FOUND)
-                .entity(new ErrorMessage("user " + userUuid + " was not found."))
-                .build();
+    public User fetchUser(@PathParam("userUuid") UUID userUuid){
+        return userService
+                .getUser(userUuid)
+                .orElseThrow(() -> new NotFoundException(("user " + userUuid + " not found")));
     }
 
     @POST
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    public Response insertNewUser(@Valid User user){
-        int result = userService.insertUser(user);
-        return getIntegerResponseEntity(result);
+    public void insertNewUser(@Valid User user){
+        userService.insertUser(user);
     }
 
     @PUT
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    public Response updateUser(User user){
-        int result = userService.updateUser(user);
-        return getIntegerResponseEntity(result);
+    public void updateUser(User user){
+        userService.updateUser(user);
     }
 
     @DELETE
     @Produces(APPLICATION_JSON)
     @Path("{userUuid}")
-    public Response deleteUser(@PathParam("userUuid") UUID userUuid){
-        int result = userService.removeUser(userUuid);
-        return getIntegerResponseEntity(result);
-    }
-
-    private Response getIntegerResponseEntity(int result) {
-        if (result == 1) {
-            return Response.ok().build();
-        }
-        return Response.status(Response.Status.BAD_REQUEST).build();
-    }
-
-    class ErrorMessage{
-        String message;
-
-        public ErrorMessage(String message) {
-            this.message = message;
-        }
-
-        public String getMessage() {
-            return message;
-        }
-
-        public void setMessage(String message) {
-            this.message = message;
-        }
+    public void deleteUser(@PathParam("userUuid") UUID userUuid){
+        userService.removeUser(userUuid);
     }
 }
