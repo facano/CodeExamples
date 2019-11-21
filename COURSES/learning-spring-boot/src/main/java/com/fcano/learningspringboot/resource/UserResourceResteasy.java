@@ -4,8 +4,9 @@ import com.fcano.learningspringboot.model.User;
 import com.fcano.learningspringboot.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.validation.annotation.Validated;
 
+import javax.validation.Valid;
 import javax.ws.rs.*;
 import javax.ws.rs.core.Response;
 import java.util.List;
@@ -16,6 +17,7 @@ import static javax.ws.rs.core.MediaType.APPLICATION_JSON;
 
 @Path("/api/v1/users")
 @Component
+@Validated
 public class UserResourceResteasy {
 
     private UserService userService;
@@ -46,7 +48,8 @@ public class UserResourceResteasy {
 
     @POST
     @Produces(APPLICATION_JSON)
-    public Response insertNewUser(@RequestBody User user){
+    @Consumes(APPLICATION_JSON)
+    public Response insertNewUser(@Valid User user){
         int result = userService.insertUser(user);
         return getIntegerResponseEntity(result);
     }
@@ -54,7 +57,7 @@ public class UserResourceResteasy {
     @PUT
     @Produces(APPLICATION_JSON)
     @Consumes(APPLICATION_JSON)
-    public Response updateUser(@RequestBody User user){
+    public Response updateUser(User user){
         int result = userService.updateUser(user);
         return getIntegerResponseEntity(result);
     }
