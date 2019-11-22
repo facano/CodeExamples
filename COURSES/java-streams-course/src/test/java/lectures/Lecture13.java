@@ -7,6 +7,7 @@ import org.junit.Test;
 public class Lecture13 {
   @Test
   public void intermediateAndTerminalOperations() throws Exception {
+    // Lazy evaluation: .filter, .map, etc doesn't executed until .collect is invoked
     System.out.println(
         MockData.getCars()
             .stream()
