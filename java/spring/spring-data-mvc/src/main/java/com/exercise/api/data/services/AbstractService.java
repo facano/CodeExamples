@@ -11,8 +11,8 @@ abstract class AbstractService<T, R extends CrudRepository<T, Long>> {
 
     protected R repository;
 
-    public T create(T object){
-        return repository.save(object);
+    public Optional<T> create(T object){
+        return Optional.of(repository.save(object));
     }
 
     public Optional<T> get(long objectId){
@@ -23,8 +23,8 @@ abstract class AbstractService<T, R extends CrudRepository<T, Long>> {
         return (List<T>) repository.findAll();
     }
 
-    public T update(T object){
-        return repository.save(object);
+    public Optional<T> update(T object){
+        return Optional.of(repository.save(object));
     }
 
     public void delete(Long objectId){

@@ -24,17 +24,18 @@ public class CourseService extends AbstractService<Course, CourseRepository> {
         return repository.findByTeacherId(teacherId);
     }
 
-    public Course createByTeacher(Course course, Long teacherId) {
+    public Optional<Course> persistByTeacher(Course course, Long teacherId) {
         Optional<Teacher> teacherOptional = teacherRepository.findById(teacherId);
         if (teacherOptional.isPresent()){
             Teacher teacher = teacherOptional.get();
             course.setTeacher(teacher);
-            repository.save(course);
             teacher.addCourse(course);
+            repository.save(course);
             teacherRepository.save(teacher);
-            return course;
+
+            return Optional.of(course);
         }
-        return null;
+        return Optional.empty();
     }
 
     public Optional<Course> getByTeacher(Long id, Long teacherId) {

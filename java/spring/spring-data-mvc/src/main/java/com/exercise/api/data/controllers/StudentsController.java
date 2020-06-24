@@ -4,7 +4,6 @@ import com.exercise.api.data.models.Student;
 import com.exercise.api.data.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -12,8 +11,12 @@ import java.util.Optional;
 @RequestMapping("/api/students")
 public class StudentsController {
 
+    private final StudentService studentService;
+
     @Autowired
-    private StudentService studentService;
+    public StudentsController(StudentService studentService) {
+        this.studentService = studentService;
+    }
 
     @GetMapping("")
     public List<Student> students(){
@@ -21,7 +24,7 @@ public class StudentsController {
     }
 
     @PostMapping("")
-    public Student createStudents(@RequestBody Student student){
+    public Optional<Student> createStudents(@RequestBody Student student){
         return studentService.create(student);
     }
 
@@ -31,7 +34,7 @@ public class StudentsController {
     }
 
     @PutMapping("/{id}")
-    public Student updateStudent(@RequestBody Student student, @PathVariable Long id){
+    public Optional<Student> updateStudent(@RequestBody Student student, @PathVariable Long id){
         student.setId(id);
         return studentService.update(student);
     }
