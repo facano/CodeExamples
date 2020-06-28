@@ -1,5 +1,6 @@
 package com.exercise.api.data.controllers;
 
+import com.exercise.api.data.helpers.ConstantURL;
 import com.exercise.api.data.models.Teacher;
 import com.exercise.api.data.services.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/teachers")
+@RequestMapping(ConstantURL.TEACHERS)
 public class TeacherController {
 
     private final TeacherService teacherService;

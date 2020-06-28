@@ -1,14 +1,16 @@
 package com.exercise.api.data.controllers;
 
+import com.exercise.api.data.helpers.ConstantURL;
 import com.exercise.api.data.models.Course;;
 import com.exercise.api.data.services.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/api/teachers/{teacher_id}/courses")
+@RequestMapping(ConstantURL.COURSES)
 public class CourseController {
 
     private final CourseService courseService;
@@ -24,7 +26,7 @@ public class CourseController {
     }
 
     @PostMapping("")
-    public Optional<Course> createCourse(@PathVariable Long teacher_id, @RequestBody Course course){
+    public Optional<Course> createCourse(@PathVariable Long teacher_id, @Validated @RequestBody Course course){
         return courseService.persistByTeacher(course, teacher_id);
     }
 
