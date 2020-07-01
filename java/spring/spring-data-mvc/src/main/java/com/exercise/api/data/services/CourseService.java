@@ -1,8 +1,10 @@
 package com.exercise.api.data.services;
 
 import com.exercise.api.data.models.Course;
+import com.exercise.api.data.models.Student;
 import com.exercise.api.data.models.Teacher;
 import com.exercise.api.data.repositories.CourseRepository;
+import com.exercise.api.data.repositories.StudentRepository;
 import com.exercise.api.data.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +16,9 @@ public class CourseService extends AbstractService<Course, CourseRepository> {
 
     @Autowired
     private TeacherRepository teacherRepository;
+
+    @Autowired
+    private StudentRepository studentRepository;
 
     @Autowired
     public CourseService(CourseRepository repository){
@@ -49,6 +54,28 @@ public class CourseService extends AbstractService<Course, CourseRepository> {
             teacher.removeCourse(id);
             teacherRepository.save(teacher);
             repository.deleteById(id);
+        }
+    }
+
+    public void registerStudent(Long courseId, Long studentId){
+        Optional<Student> studentOptional = studentRepository.findById(studentId);
+        Optional<Course> courseOptional = repository.findById(courseId);
+
+        if (studentOptional.isPresent() && courseOptional.isPresent()){
+            Student student = studentOptional.get();
+            Course course = courseOptional.get();
+            course.addStudent(student);
+            repository.save(course);
+        }
+    }
+
+    public void unregisterStudent(Long courseId, Long studentId){
+        Optional<Course> courseOptional = repository.findById(courseId);
+
+        if (courseOptional.isPresent()){
+            Course course = courseOptional.get();
+            course.removeStudent(studentId);
+            repository.save(course);
         }
     }
 }

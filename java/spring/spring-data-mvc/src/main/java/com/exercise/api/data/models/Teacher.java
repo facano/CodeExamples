@@ -56,6 +56,6 @@ public class Teacher {
     }
 
     public void removeCourse(Long id){
-        courses.removeIf(course -> course.getId()==id);
+        courses.removeIf(course -> course.getId() == id);
     }
 }

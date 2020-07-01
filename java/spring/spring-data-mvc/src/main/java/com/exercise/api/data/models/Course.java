@@ -7,7 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.Collections;
+import java.util.List;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -28,15 +29,17 @@ public class Course {
     private Teacher teacher;
 
     @ManyToMany
-    private Set<Student> students;
+    private List<Student> students;
 
     public Course(Long id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
+        students = Collections.emptyList();
     }
 
     public Course() {
+        students = Collections.emptyList();
     }
 
     public Long getId() {
@@ -71,11 +74,19 @@ public class Course {
         this.teacher = teacher;
     }
 
-    public Set<Student> getStudents() {
+    public List<Student> getStudents() {
         return students;
     }
 
-    public void setStudents(Set<Student> students) {
+    public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public void addStudent(Student student){
+        students.add(student);
+    }
+
+    public void removeStudent(Long studentId){
+        students.removeIf(student -> student.getId() == studentId);
     }
 }
