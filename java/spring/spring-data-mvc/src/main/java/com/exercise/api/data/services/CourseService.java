@@ -41,4 +41,14 @@ public class CourseService extends AbstractService<Course, CourseRepository> {
     public Optional<Course> getByTeacher(Long id, Long teacherId) {
         return repository.findByIdAndTeacherId(id, teacherId);
     }
+
+    public void removeByTeacher(Long id, Long teacherId) {
+        Optional<Teacher> teacherOptional = teacherRepository.findById(teacherId);
+        if (teacherOptional.isPresent()) {
+            Teacher teacher = teacherOptional.get();
+            teacher.removeCourse(id);
+            teacherRepository.save(teacher);
+            repository.deleteById(id);
+        }
+    }
 }

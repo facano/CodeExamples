@@ -1,11 +1,15 @@
 package com.exercise.api.data.models;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import com.sun.istack.NotNull;
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 
 import javax.persistence.*;
 import java.util.Set;
 
+@Builder
+@AllArgsConstructor(access = AccessLevel.PROTECTED)
 @Entity
 public class Student {
 

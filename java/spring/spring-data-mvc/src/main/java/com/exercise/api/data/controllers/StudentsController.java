@@ -4,12 +4,13 @@ import com.exercise.api.data.helpers.ConstantURL;
 import com.exercise.api.data.models.Student;
 import com.exercise.api.data.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.util.MimeTypeUtils;
 import org.springframework.web.bind.annotation.*;
 import java.util.List;
 import java.util.Optional;
 
 @RestController
-@RequestMapping(ConstantURL.STUDENTS)
+@RequestMapping(value = ConstantURL.STUDENTS, produces = MimeTypeUtils.APPLICATION_JSON_VALUE)
 public class StudentsController {
 
     private final StudentService studentService;
