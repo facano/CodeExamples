@@ -9,6 +9,8 @@ import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -23,9 +25,9 @@ public class CourseControllerTest extends ControllerTest {
 
     private Course buildCourse(String name, String description) {
         return Course.builder()
-                .name(name)
-                .description(description)
-                .build();
+                     .name(name)
+                     .description(description)
+                     .build();
     }
 
     private Teacher postTeacher(Teacher teacher, URI uri) {
@@ -41,10 +43,13 @@ public class CourseControllerTest extends ControllerTest {
     }
 
     private URI buildCourseURI(Long teacherId, Long courseId) throws URISyntaxException {
+        Map template = new HashMap<String, String>();
+        template.put("teacher_id", teacherId.toString());
         if (Objects.isNull(courseId))
-            return buildURI(ConstantURL.COURSES.replace("{teacher_id}", teacherId.toString()));
-        else
-            return buildURI(ConstantURL.COURSES.replace("{teacher_id}", teacherId.toString()), courseId.toString());
+            return buildURI(template, ConstantURL.COURSES);
+        else {
+            return buildURI(template, ConstantURL.COURSES, courseId.toString());
+        }
     }
 
     @Test

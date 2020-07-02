@@ -18,8 +18,8 @@ public class StudentsControllerTest extends ControllerTest {
 
     private Student buildStudent(String name) {
         return Student.builder()
-                .name(name)
-                .build();
+                      .name(name)
+                      .build();
     }
 
     private Student postStudent(Student student, URI uri) {
