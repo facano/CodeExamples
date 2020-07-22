@@ -5,7 +5,6 @@ import com.exercise.api.data.models.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -23,7 +22,6 @@ public class TeacherControllerTest extends ControllerTest {
     }
 
     private Teacher postTeacher(Teacher teacher, URI uri) {
-        RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Teacher> request = new HttpEntity<>(teacher);
         return restTemplate.postForObject(uri, request, Teacher.class);
     }
@@ -49,7 +47,7 @@ public class TeacherControllerTest extends ControllerTest {
         URI entityUri = buildURI(ConstantURL.TEACHERS, postedTeacherResponse.getId()
                 .toString()
         );
-        RestTemplate restTemplate = new RestTemplate();
+
         Teacher teacherResponse = restTemplate.getForObject(entityUri, Teacher.class);
 
         assertThat(teacherResponse).isNotNull();
@@ -65,7 +63,6 @@ public class TeacherControllerTest extends ControllerTest {
         Teacher postedTeacherResponse1 = postTeacher(teacher1, uri);
         Teacher postedTeacherResponse2 = postTeacher(teacher2, uri);
 
-        RestTemplate restTemplate = new RestTemplate();
         ResponseEntity<Teacher[]> teacherResponse = restTemplate.getForEntity(uri, Teacher[].class);
         List teacherList = Arrays.asList(teacherResponse.getBody());
 
@@ -85,7 +82,7 @@ public class TeacherControllerTest extends ControllerTest {
         URI entityUri = buildURI(ConstantURL.TEACHERS, postedTeacherResponse.getId()
                                                                             .toString()
         );
-        RestTemplate restTemplate = new RestTemplate();
+
         Teacher teacherResponse = restTemplate.getForObject(entityUri, Teacher.class);
 
         assertThat(teacherResponse).isNotNull();

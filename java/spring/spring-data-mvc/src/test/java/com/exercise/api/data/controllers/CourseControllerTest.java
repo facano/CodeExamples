@@ -5,7 +5,6 @@ import com.exercise.api.data.models.Course;
 import com.exercise.api.data.models.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpEntity;
-import org.springframework.web.client.RestTemplate;
 
 import java.net.URI;
 import java.net.URISyntaxException;
@@ -31,13 +30,11 @@ public class CourseControllerTest extends ControllerTest {
     }
 
     private Teacher postTeacher(Teacher teacher, URI uri) {
-        RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Teacher> request = new HttpEntity<>(teacher);
         return restTemplate.postForObject(uri, request, Teacher.class);
     }
 
     private Course postCourse(Course course, URI uri) {
-        RestTemplate restTemplate = new RestTemplate();
         HttpEntity<Course> request = new HttpEntity<>(course);
         return restTemplate.postForObject(uri, request, Course.class);
     }
@@ -80,7 +77,7 @@ public class CourseControllerTest extends ControllerTest {
         Course postedCourseResponse = postCourse(course, uriCourse);
 
         uriCourse = buildCourseURI(postedTeacherResponse.getId(), postedCourseResponse.getId());
-        RestTemplate restTemplate = new RestTemplate();
+
         Course getCourseResponse = restTemplate.getForObject(uriCourse, Course.class);
 
         assertThat(getCourseResponse).isNotNull();
@@ -98,7 +95,7 @@ public class CourseControllerTest extends ControllerTest {
         Course postedCourseResponse = postCourse(course, uriCourse);
 
         uriCourse = buildCourseURI(postedTeacherResponse.getId(), postedCourseResponse.getId());
-        RestTemplate restTemplate = new RestTemplate();
+
         Course getCourseResponse = restTemplate.getForObject(uriCourse, Course.class);
 
         assertThat(getCourseResponse).isNotNull();
