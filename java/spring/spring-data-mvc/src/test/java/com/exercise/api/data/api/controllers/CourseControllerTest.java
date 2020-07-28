@@ -1,8 +1,8 @@
-package com.exercise.api.data.controllers;
+package com.exercise.api.data.api.controllers;
 
 import com.exercise.api.data.helpers.ConstantURL;
-import com.exercise.api.data.models.Course;
-import com.exercise.api.data.models.Teacher;
+import com.exercise.api.data.domain.Course;
+import com.exercise.api.data.domain.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.http.HttpEntity;
 

@@ -1,8 +1,8 @@
 package com.exercise.api.data.services;
 
-import com.exercise.api.data.models.Course;
-import com.exercise.api.data.models.Student;
-import com.exercise.api.data.models.Teacher;
+import com.exercise.api.data.domain.Course;
+import com.exercise.api.data.domain.Student;
+import com.exercise.api.data.domain.Teacher;
 import com.exercise.api.data.repositories.CourseRepository;
 import com.exercise.api.data.repositories.StudentRepository;
 import com.exercise.api.data.repositories.TeacherRepository;

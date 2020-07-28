@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Teachers</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+        integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+</head>
+<body>
+<div class="container-fluid px-4 py-4">
+  <div class="row">
+    <div class="col-10">
+      <h1>Teachers</h1>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-10">
+      <dv>
+        <p th:if="${teachers.isEmpty()}" class="text-center bg-info text-white"><b>Teachers not found..</b></p>
+
+        <table th:unless="${teachers.isEmpty()}" class="table table-striped">
+          <tr class="thead-dark">
+            <th>#</th>
+            <th>Name</th>
+            <th>Courses</th>
+          </tr>
+          <tr th:each="teacher, iStat: ${teachers}">
+            <td th:text="${iStat.index + 1}"></td>
+            <td th:text="${teacher.getName()}"/>
+            <td th:text="${teacher.getCourses().isEmpty() ? '-' : teacher.getCoursesNames()}"/>
+          </tr>
+        </table>
+      </dv>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

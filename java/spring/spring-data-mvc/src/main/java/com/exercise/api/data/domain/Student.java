@@ -1,4 +1,4 @@
-package com.exercise.api.data.models;
+package com.exercise.api.data.domain;
 
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;

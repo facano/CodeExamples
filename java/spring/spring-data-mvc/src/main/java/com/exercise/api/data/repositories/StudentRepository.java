@@ -1,6 +1,6 @@
 package com.exercise.api.data.repositories;
 
-import com.exercise.api.data.models.Student;
+import com.exercise.api.data.domain.Student;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 

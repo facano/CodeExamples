@@ -1,4 +1,4 @@
-package com.exercise.api.data.controllers;
+package com.exercise.api.data.api.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;

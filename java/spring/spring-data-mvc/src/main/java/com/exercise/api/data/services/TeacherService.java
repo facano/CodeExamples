@@ -1,6 +1,6 @@
 package com.exercise.api.data.services;
 
-import com.exercise.api.data.models.Teacher;
+import com.exercise.api.data.domain.Teacher;
 import com.exercise.api.data.repositories.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

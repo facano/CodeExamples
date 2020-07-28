@@ -1,5 +1,6 @@
-package com.exercise.api.data.models;
+package com.exercise.api.data.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sun.istack.NotNull;
 import lombok.AccessLevel;
 import lombok.AllArgsConstructor;
@@ -8,6 +9,7 @@ import lombok.Builder;
 import javax.persistence.*;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Builder
 @AllArgsConstructor(access = AccessLevel.PROTECTED)
@@ -57,5 +59,12 @@ public class Teacher {
 
     public void removeCourse(Long id){
         courses.removeIf(course -> course.getId() == id);
+    }
+
+    @JsonIgnore
+    public String getCoursesNames(){
+        return courses.stream()
+                      .map(Course::getName)
+                      .collect(Collectors.joining(", "));
     }
 }

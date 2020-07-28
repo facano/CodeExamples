@@ -1,7 +1,7 @@
-package com.exercise.api.data.controllers;
+package com.exercise.api.data.api.controllers;
 
 import com.exercise.api.data.helpers.ConstantURL;
-import com.exercise.api.data.models.Student;
+import com.exercise.api.data.domain.Student;
 import com.exercise.api.data.services.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.util.MimeTypeUtils;
