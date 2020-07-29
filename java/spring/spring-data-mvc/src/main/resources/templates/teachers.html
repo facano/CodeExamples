@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml" xmlns:th="https://www.thymeleaf.org"
+      xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity3">
 <head>
   <meta charset="UTF-8">
   <title>Teachers</title>
@@ -16,7 +17,9 @@
   <div class="row">
     <div class="col-10">
       <dv>
-        <p th:if="${teachers.isEmpty()}" class="text-center bg-info text-white"><b>Teachers not found..</b></p>
+        <div th:if="${teachers.isEmpty()}" class="alert alert-warning text-center" role="alert">
+          <b>Teachers not found..</b>
+        </div>
 
         <table th:unless="${teachers.isEmpty()}" class="table table-striped">
           <tr class="thead-dark">

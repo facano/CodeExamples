@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class FrontEndController {
-    
+
     private final TeacherService teacherService;
 
     @Autowired
@@ -20,5 +20,10 @@ public class FrontEndController {
     public String teachers(Model model){
         model.addAttribute("teachers", teacherService.getAll());
         return "teachers";
+    }
+
+    @GetMapping("/login")
+    public String login(){
+        return "login";
     }
 }
