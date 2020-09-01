@@ -16,7 +16,7 @@ import java.util.stream.Collectors;
 @Entity
 public class Teacher {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull

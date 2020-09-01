@@ -14,7 +14,7 @@ import java.util.Set;
 public class Student {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long Id;
 
     @NotNull

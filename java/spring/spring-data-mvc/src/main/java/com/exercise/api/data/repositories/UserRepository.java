@@ -1,11 +1,11 @@
 package com.exercise.api.data.repositories;
 
-import java.util.List;
 import java.util.Optional;
-import org.springframework.security.core.userdetails.UserDetails;
+import com.exercise.api.data.domain.User;
+import org.springframework.data.repository.CrudRepository;
+import org.springframework.stereotype.Repository;
 
-public interface UserRepository {
-  List<UserDetails> getAll();
-
-  Optional<UserDetails> findByAuthority(String authority);
+@Repository
+public interface UserRepository extends CrudRepository<User, Long> {
+    Optional<User> findByUsername(String username);
 }
