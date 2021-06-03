@@ -16,7 +16,7 @@
 
 	<properties>
 		<java.version>13</java.version>
-		<rest.easy.client.version>3.7.0.Final</rest.easy.client.version>
+		<rest.easy.client.version>4.5.7.Final</rest.easy.client.version>
 		<jboss.rest.easy.version>3.1.0.Final</jboss.rest.easy.version>
 	</properties>
 
